@@ -12,7 +12,7 @@
 8. Ketik perintah : 
     ../Python-3.10.14/configure --enable-optimizations
 9. Jalankan make dengan perintah : 
-    make j 4   #4 jumlah core prosessor
+    make -j 4   #4 jumlah core prosessor
 10. Install ke lokasi alernatif dengan perintah : 
     sudo -H make altinstall
 11. Cek lokasi dengan perintah : which python3.10 
