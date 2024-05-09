@@ -32,19 +32,19 @@ link referensi :
    pip install -U pip wheel gdown
 12. Download dan install the pre-built PyTorch, TorchVision paket python3.8,
    pada terminal eksekusi perintah :
-   # download pytorch 1.11.0
+   a. download pytorch 1.11.0
    gdown https://drive.google.com/uc?id=1hs9HM0XJ2LPFghcn7ZMOs5qu5HexPXwM
-   # download torchvision 0.12.0
+   b. download torchvision 0.12.0
    gdown https://drive.google.com/uc?id=1m0d8ruUY8RvCP9eVjZw4Nc8LAwM8yuGV
    python3.8 -m pip install torch-*.whl torchvision-*.whl
-13. Install the Python package for YOLOv8,
+14. Install the Python package for YOLOv8,
    pada terminal eksekusi perintah :
    pip install .
-14. test program YOLOv8,
+15. test program YOLOv8,
    pada terminal eksekusi perintah :
-   # kode 1 : yolo task=detect mode=predict model=yolov8n.pt source=0 show=True
-   # kode 2 : yolo task=segment mode=predict model=yolov8n-seg.pt source=0 show=True
+    a. kode 1 : yolo task=detect mode=predict model=yolov8n.pt source=0 show=True
+    b. kode 2 : yolo task=segment mode=predict model=yolov8n-seg.pt source=0 show=True
    
    Note that for object detection, tasks=detect displays bounding boxes, and tasks=segment displays bounding boxes and segmentation.
    YOLOv8 has several models (yolov8n, yolov8s, yolov8m, yolov8l, yolov8x), and the following are the actual FPS when running on Jetson Nano.
-15. Display window akan menampilkan visualisasi kamera secara live
+16. Display window akan menampilkan visualisasi kamera secara live
