@@ -8,7 +8,7 @@ link referensi :
 1. https://qengineering.eu/install-pytorch-on-jetson-nano.html
 2. https://elinux.org/Jetson_Zoo
 3. https://pytorch.org/blog/running-pytorch-models-on-jetson-nano/
-4. https://i7y.org/en/yolov8-on-jetson-nano/
+4. https://i7y.org/en/yolov8-on-jetson-nano/ [berhasil dicoba di Jetson Nano running good 10 Mei 2024 03:27 WITA - SCARLET 2]
 
 5. Pytorch untuk python3.10
    pip install https://download.pytorch.org/whl/cpu/torch-2.1.0%2Bcpu-cp310-cp310-win_amd64.whl#sha256=ebba26871b24cb979ed0a24756a773eb6ea04c002b4f71392b50232723d80a6d
