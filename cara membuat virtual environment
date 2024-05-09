@@ -1,0 +1,8 @@
+1. Buka Terminal : 
+    cd ~/path/to/your/project
+2. Buat Lingkungan Virtual :
+    python3 -m venv <nama_env>
+3. Aktifkan Lingkungan Virtual :
+    source <nama_env>/bin/activate
+4. Keluar dari Lingkungan Virtual :
+    deactivate
