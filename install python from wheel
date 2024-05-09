@@ -1,0 +1,20 @@
+1. Masuk ke folder Download
+2. Ketik perintah : 
+    sudo apt update
+3. Ketik perintah : 
+    sudo apt install build-essential zlib1g-dev libncurses5-dev libgdbm-dev libnss3-dev libssl-dev libreadline-dev libffi-dev wget
+4. Download the python source, ketik : 
+    wget https://www.python.org/ftp/python/3.10.14/Python-3.10.14.tgz
+5. UnTAR file : 
+    tar xvf Downloads/Python-3.10.14.tgz
+6. Buat folder build-python-3.10.14
+7. Masuk ke folder build-python-3.10.14
+8. Ketik perintah : 
+    ../Python-3.10.14/configure --enable-optimizations
+9. Jalankan make dengan perintah : 
+    make j 4   #4 jumlah core prosessor
+10. Install ke lokasi alernatif dengan perintah : 
+    sudo -H make altinstall
+11. Cek lokasi dengan perintah : which python3.10 
+    It should return ‘/usr/local/bin/python3.10’.
+##selesai##
