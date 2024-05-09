@@ -10,5 +10,41 @@ link referensi :
 3. https://pytorch.org/blog/running-pytorch-models-on-jetson-nano/
 4. https://i7y.org/en/yolov8-on-jetson-nano/ [berhasil dicoba di Jetson Nano running good 10 Mei 2024 03:27 WITA - SCARLET 2]
 
-5. Pytorch untuk python3.10
-   pip install https://download.pytorch.org/whl/cpu/torch-2.1.0%2Bcpu-cp310-cp310-win_amd64.whl#sha256=ebba26871b24cb979ed0a24756a773eb6ea04c002b4f71392b50232723d80a6d
+# SCARLET 2 Project
+1. Install system baru di Jetson Nano 4G
+2. Hapus file libreoffice dan thunderbird
+3. Bikin swap tambahan
+4. update dan upgrade system OS
+5. Buka terminal eksekusi perintah :
+   sudo apt install -y python3.8 python3.8-venv python3.8-dev python3-pip \libopenmpi-dev libomp-dev libopenblas-dev libblas-dev libeigen3-dev libcublas-dev
+6. Cloning repo YOLOv8,
+   pada terminal eksekusi perintah :
+   git clone https://github.com/ultralytics/ultralytics
+8. Masuk ke folder ultralytics
+9. Membuat virtual environment python3.8,
+   pada terminal eksekusi perintah :
+   python3.8 -m venv scarlet2-env
+10. Aktifkan virtual environment,
+   pada terminal eksekusi perintah :
+   source scarlet2/bin/activate
+11. Update Python packages not specified in YOLOv8,
+   pada terminal eksekusi perintah :
+   pip install -U pip wheel gdown
+12. Download dan install the pre-built PyTorch, TorchVision paket python3.8,
+   pada terminal eksekusi perintah :
+   # download pytorch 1.11.0
+   gdown https://drive.google.com/uc?id=1hs9HM0XJ2LPFghcn7ZMOs5qu5HexPXwM
+   # download torchvision 0.12.0
+   gdown https://drive.google.com/uc?id=1m0d8ruUY8RvCP9eVjZw4Nc8LAwM8yuGV
+   python3.8 -m pip install torch-*.whl torchvision-*.whl
+13. Install the Python package for YOLOv8,
+   pada terminal eksekusi perintah :
+   pip install .
+14. test program YOLOv8,
+   pada terminal eksekusi perintah :
+   # kode 1 : yolo task=detect mode=predict model=yolov8n.pt source=0 show=True
+   # kode 2 : yolo task=segment mode=predict model=yolov8n-seg.pt source=0 show=True
+   
+   Note that for object detection, tasks=detect displays bounding boxes, and tasks=segment displays bounding boxes and segmentation.
+   YOLOv8 has several models (yolov8n, yolov8s, yolov8m, yolov8l, yolov8x), and the following are the actual FPS when running on Jetson Nano.
+15. Display window akan menampilkan visualisasi kamera secara live
