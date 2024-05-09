@@ -8,3 +8,4 @@ link referensi :
 1. https://qengineering.eu/install-pytorch-on-jetson-nano.html
 2. https://elinux.org/Jetson_Zoo
 3. https://pytorch.org/blog/running-pytorch-models-on-jetson-nano/
+4. https://i7y.org/en/yolov8-on-jetson-nano/
