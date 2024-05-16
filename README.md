@@ -48,3 +48,22 @@ link referensi :
    Note that for object detection, tasks=detect displays bounding boxes, and tasks=segment displays bounding boxes and segmentation.
    YOLOv8 has several models (yolov8n, yolov8s, yolov8m, yolov8l, yolov8x), and the following are the actual FPS when running on Jetson Nano.
 16. Display window akan menampilkan visualisasi kamera secara live
+
+
+# Buat SWAP di Nano
+1. Masuk ke terminal
+2. Ketik : free -h
+3. Ketik : df -h
+4. Ketik : sudo fallocate -l 4G /swapfile
+5. Ketik : ls -lh /swapfile
+# Mengaktifkan SWAP Partition
+1. Ketik : sudo chmod 600 /swapfile
+2. Ketik : sudo mkswap /swapfile
+3. Ketik : sudo swapon /swapfile
+# Cek partisi SWAP
+1. Ketik : free -h
+# Backup FSTAB
+1. Ketik : sudo cp /etc/fstab /etc/fstab.bak
+2. Ketik : echo '/swapfile none swap sw 0 0' | sudo tee -a /etc/fstab
+
+sumber : https://www.forecr.io/blogs/programming/how-to-increase-swap-space-on-jetson-modules
