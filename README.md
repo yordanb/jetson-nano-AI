@@ -9,7 +9,9 @@ link referensi :
 2. https://elinux.org/Jetson_Zoo
 3. https://pytorch.org/blog/running-pytorch-models-on-jetson-nano/
 4. https://i7y.org/en/yolov8-on-jetson-nano/ [berhasil dicoba di Jetson Nano running good 10 Mei 2024 03:27 WITA - SCARLET 2]
+5. https://github.com/roboflow/notebooks/blob/main/notebooks/train-yolov8-object-detection-on-custom-dataset.ipynb [custom dataset yolo]
 
+   
 # SCARLET 2 Project
 1. Install system baru di Jetson Nano 4G
 2. Hapus file libreoffice dan thunderbird
