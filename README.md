@@ -10,6 +10,7 @@ link referensi :
 3. https://pytorch.org/blog/running-pytorch-models-on-jetson-nano/
 4. https://i7y.org/en/yolov8-on-jetson-nano/ [berhasil dicoba di Jetson Nano running good 10 Mei 2024 03:27 WITA - SCARLET 2]
 5. https://github.com/roboflow/notebooks/blob/main/notebooks/train-yolov8-object-detection-on-custom-dataset.ipynb [custom dataset yolo]
+6. https://github.com/Arijit1080/Drowsiness-and-Yawn-Detection-with-voice-alert-using-Dlib
 
    
 # SCARLET 2 Project
