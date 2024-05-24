@@ -81,12 +81,12 @@ args = vars(ap.parse_args())
 EYE_AR_THRESH = 0.3
 EYE_AR_CONSEC_FRAMES = 30
 YAWN_THRESH = 20
-ALERT_THRESHOLD = 5  # Jumlah alert untuk mengirimkan pesan MQTT
+ALARM_DURATION = 3  # Duration in seconds before sending an alert
 alarm_status = False
 alarm_status2 = False
 saying = False
 COUNTER = 0
-ALERT_COUNT = 0  # Counter untuk alert
+start_time = None  # Variable to store the start time of an alert
 
 print("-> Loading the predictor and detector...")
 #detector = dlib.get_frontal_face_detector()
@@ -136,13 +136,15 @@ while True:
             if COUNTER >= EYE_AR_CONSEC_FRAMES:
                 if not alarm_status:
                     alarm_status = True
-                    ALERT_COUNT += 1  # Tambah jumlah alert
-
-                    if ALERT_COUNT >= ALERT_THRESHOLD:
+                    if start_time is None:
+                        start_time = time.time()
+                else:
+                    if (time.time() - start_time) >= ALARM_DURATION:
                         t = Thread(target=alarm, args=('wake up sir', 'DROWSINESS ALERT!'))
                         t.daemon = True
                         t.start()
-                        ALERT_COUNT = 0  # Reset alert counter setelah mengirim pesan MQTT
+                        COUNTER = 0
+                        start_time = None
 
                 cv2.putText(frame, "DROWSINESS ALERT!", (10, 30),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
@@ -150,21 +152,24 @@ while True:
         else:
             COUNTER = 0
             alarm_status = False
+            start_time = None
 
         if distance > YAWN_THRESH:
             cv2.putText(frame, "Yawn Alert", (10, 30),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
             if not alarm_status2 and not saying:
                 alarm_status2 = True
-                ALERT_COUNT += 1  # Tambah jumlah alert
-
-                if ALERT_COUNT >= ALERT_THRESHOLD:
-                    t = Thread(target=alarm, args=('take some fresh air sir', 'YAWN ALERT!'))
-                    t.daemon = True
-                    t.start()
-                    ALERT_COUNT = 0  # Reset alert counter setelah mengirim pesan MQTT
+                if start_time is None:
+                    start_time = time.time()
+                else:
+                    if (time.time() - start_time) >= ALARM_DURATION:
+                        t = Thread(target=alarm, args=('take some fresh air sir', 'YAWN ALERT!'))
+                        t.daemon = True
+                        t.start()
+                        start_time = None
         else:
             alarm_status2 = False
+            start_time = None
 
         cv2.putText(frame, "EAR: {:.2f}".format(ear), (300, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
