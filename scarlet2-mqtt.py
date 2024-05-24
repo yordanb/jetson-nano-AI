@@ -81,10 +81,12 @@ args = vars(ap.parse_args())
 EYE_AR_THRESH = 0.3
 EYE_AR_CONSEC_FRAMES = 30
 YAWN_THRESH = 20
+ALERT_THRESHOLD = 5  # Jumlah alert untuk mengirimkan pesan MQTT
 alarm_status = False
 alarm_status2 = False
 saying = False
 COUNTER = 0
+ALERT_COUNT = 0  # Counter untuk alert
 
 print("-> Loading the predictor and detector...")
 #detector = dlib.get_frontal_face_detector()
@@ -134,9 +136,13 @@ while True:
             if COUNTER >= EYE_AR_CONSEC_FRAMES:
                 if not alarm_status:
                     alarm_status = True
-                    t = Thread(target=alarm, args=('wake up sir', 'DROWSINESS ALERT!'))
-                    t.daemon = True
-                    t.start()
+                    ALERT_COUNT += 1  # Tambah jumlah alert
+
+                    if ALERT_COUNT >= ALERT_THRESHOLD:
+                        t = Thread(target=alarm, args=('wake up sir', 'DROWSINESS ALERT!'))
+                        t.daemon = True
+                        t.start()
+                        ALERT_COUNT = 0  # Reset alert counter setelah mengirim pesan MQTT
 
                 cv2.putText(frame, "DROWSINESS ALERT!", (10, 30),
                             cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
@@ -150,9 +156,13 @@ while True:
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
             if not alarm_status2 and not saying:
                 alarm_status2 = True
-                t = Thread(target=alarm, args=('take some fresh air sir', 'YAWN ALERT!'))
-                t.daemon = True
-                t.start()
+                ALERT_COUNT += 1  # Tambah jumlah alert
+
+                if ALERT_COUNT >= ALERT_THRESHOLD:
+                    t = Thread(target=alarm, args=('take some fresh air sir', 'YAWN ALERT!'))
+                    t.daemon = True
+                    t.start()
+                    ALERT_COUNT = 0  # Reset alert counter setelah mengirim pesan MQTT
         else:
             alarm_status2 = False
 
